@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fa">
+  <meta name="description" content="Alat analisis teks pribadi berbasis peramban untuk menghitung kata, karakter, kalimat, paragraf, baris, dan perkiraan waktu membaca.">
+  <title>Text Analyzer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    (() => {
+      try {
+        const saved = localStorage.getItem("text-analyzer-theme");
+        const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = saved || preferred;
+      } catch (_) {}
+    })();
+  </script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Beranda Text Analyzer">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>text<span class="brand-accent">analyzer</span><span class="brand-author"> by Alypradana</span></span>
+      </a>
+      <div class="topbar-actions">
+        <button class="theme-toggle icon-button" id="themeToggle" type="button" aria-label="Ganti ke tema gelap" title="Ganti tema">
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.1A8.5 8.5 0 0 1 9.9 3.5 8.5 8.5 0 1 0 20.5 14.1Z"></path></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span class="eyebrow-line"></span> ALAT SEDERHANA UNTUK SETIAP PENULIS</div>
+        <h1>Kenali kata-katamu<br><span>Pahami tulisanmu</span></h1>
+        <p class="hero-copy">Cara praktis untuk memahami tulisan tanpa gangguan. Tempelkan teks dan dapatkan statistiknya secara langsung dan privat.</p>
+      </section>
+
+      <section class="workspace" aria-label="Area kerja analisis teks">
+        <div class="editor-panel panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Teks Anda</h2>
+              <p>Ketik atau tempelkan teks yang ingin Anda analisis.</p>
+            </div>
+          </div>
+          <label class="sr-only" for="textInput">Teks yang akan dianalisis</label>
+          <textarea id="textInput" spellcheck="true" placeholder="Mulai menulis atau tempelkan teks Anda di sini…&#10;&#10;Statistik akan diperbarui otomatis saat Anda mengetik." autocapitalize="sentences"></textarea>
+          <div class="editor-footer">
+            <div class="editor-hints"><span id="inputStatus">Siap saat Anda mulai</span><span class="separator">·</span><span>Teks tidak diunggah</span></div>
+            <div class="editor-actions">
+              <button class="button button-quiet" id="sampleButton" type="button">Coba Contoh</button>
+              <button class="button button-quiet" id="clearButton" type="button">Hapus Teks</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="stats-panel" aria-label="Statistik teks">
+          <div class="stats-heading">
+            <div><h2>Statistik Teks</h2><p>Ringkasan tulisan Anda.</p></div>
+            <span class="stats-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 3.75h7l4 4v12.5H7z"></path><path d="M14 3.75v4h4M10 12h5m-5 3.5h5"></path></svg>
+            </span>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card stat-card-primary"><span class="stat-label">Kata</span><strong class="stat-value" id="words">0</strong><span class="stat-note">Dipisahkan spasi</span></article>
+            <article class="stat-card"><span class="stat-label">Karakter</span><strong class="stat-value" id="characters">0</strong><span class="stat-note">Termasuk spasi</span></article>
+            <article class="stat-card"><span class="stat-label">Karakter (tanpa spasi)</span><strong class="stat-value" id="charactersNoSpaces">0</strong><span class="stat-note">Tidak termasuk spasi</span></article>
+            <article class="stat-card"><span class="stat-label">Kalimat</span><strong class="stat-value" id="sentences">0</strong><span class="stat-note">Perkiraan berdasarkan tanda baca</span></article>
+            <article class="stat-card"><span class="stat-label">Paragraf</span><strong class="stat-value" id="paragraphs">0</strong><span class="stat-note">Blok teks yang tidak kosong</span></article>
+            <article class="stat-card"><span class="stat-label">Baris</span><strong class="stat-value" id="lines">0</strong><span class="stat-note">Jumlah baris dalam teks</span></article>
+            <article class="stat-card"><span class="stat-label">Waktu membaca</span><strong class="stat-value" id="readingTime">0 sec</strong><span class="stat-note">Dengan kecepatan 200 kata per menit</span></article>
+            <article class="stat-card"><span class="stat-label">Waktu berbicara</span><strong class="stat-value" id="speakingTime">0 sec</strong><span class="stat-note">Dengan kecepatan 130 kata per menit</span></article>
+          </div>
+          <div class="target-card">
+            <div class="target-topline"><div><h3>Target Kata</h3><p>Tentukan target jumlah kata.</p></div><label class="target-input-wrap"><span class="sr-only">Target kata</span><input id="wordTarget" type="number" min="1" max="1000000" value="1000" inputmode="numeric"><span>kata</span></label></div>
+            <div class="progress-track" role="progressbar" aria-label="Progres target kata" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="targetProgress"><span id="targetProgressFill"></span></div>
+            <div class="target-bottom"><span id="targetMessage">0 of 1,000 words</span><strong id="targetPercent">0%</strong></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="details-grid" aria-label="Detail teks tambahan">
+        <article class="detail-card panel">
+          <div class="detail-icon detail-icon-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16M4 10h12M4 14.5h16M4 19h9"></path></svg></div>
+          <div class="detail-copy"><h3>Rata-rata Panjang Kalimat</h3><p>Rata-rata jumlah kata dalam setiap kalimat.</p></div>
+          <strong class="detail-value" id="avgSentenceLength">0</strong>
+        </article>
+        <article class="detail-card panel">
+          <div class="detail-icon detail-icon-violet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h14v15H5zM8 8h8M8 11.5h8M8 15h5"></path></svg></div>
+          <div class="detail-copy"><h3>Rata-rata Panjang Paragraf</h3><p>Rata-rata jumlah kata dalam setiap paragraf.</p></div>
+          <strong class="detail-value" id="avgParagraphLength">0</strong>
+        </article>
+      </section>
+
+      <section class="method-note">
+  <span class="method-note-icon" aria-hidden="true">i</span>
+  <p>
+    <strong>Cara Penghitungan:</strong> Setiap kata dihitung berdasarkan pemisah spasi.
+    Contoh: "Saya suka menulis" dihitung sebagai 3 kata. Teks yang dipisahkan oleh satu baris kosong dihitung sebagai paragraf baru. Jumlah kalimat diperkirakan berdasarkan tanda titik (.), tanda tanya (?), dan tanda seru (!). Hasilnya bisa kurang tepat jika teks mengandung singkatan, seperti "Dr." atau "dll.".
+  </p>
+</section>
+    </main>
+
+    <footer class="footer">
+      <a class="footer-brand" href="#">text<span>analyzer</span></a>
+      <span>© 2026 Alypradana. All rights reserved.</span>
+      <span class="footer-privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 7.5 7 10 4-2.5 7-5.5 7-10V6z"></path><path d="m9 12 2 2 4-4"></path></svg> Privasi sejak awal</span>
+    </footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
