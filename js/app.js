@@ -3,7 +3,6 @@
 
   const $ = (id) => document.getElementById(id);
   const textInput = $("textInput");
-  const themeToggle = $("themeToggle");
   const wordTarget = $("wordTarget");
   const toast = $("toast");
   let toastTimer;
@@ -133,14 +132,5 @@
     showToast("Teks berhasil dihapus.");
   });
 
- 
-
-  themeToggle.addEventListener("click", () => {
-    const current = document.documentElement.dataset.theme || "light";
-    setTheme(current === "dark" ? "light" : "dark");
-  });
-
-  // Initial render.
-  setTheme(document.documentElement.dataset.theme || "light");
   analyze();
 })();
