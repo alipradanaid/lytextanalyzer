@@ -1,23 +1,25 @@
 /* Text Analyzer — responsive UI, light/dark themes */
 :root {
-  color-scheme: light;
-  --bg: #f7f8fa;
-  --surface: #ffffff;
-  --surface-soft: #f8fafc;
-  --surface-tint: #f1f5f9;
-  --text: #172033;
-  --text-strong: #101827;
-  --muted: #758096;
-  --muted-strong: #566176;
-  --border: #e5e9f0;
-  --border-strong: #d7deea;
-  --accent: #4f63e8;
-  --accent-dark: #3d50d2;
-  --accent-soft: #eef0ff;
-  --green: #1a9a75;
-  --shadow: 0 12px 36px rgba(22, 34, 62, .045);
+  color-scheme: dark;
+
+  --bg: #0d111b;
+  --surface: #141a27;
+  --surface-soft: #171f2e;
+  --surface-tint: #202a3b;
+  --text: #e8ecf5;
+  --text-strong: #f5f7fc;
+  --muted: #929db2;
+  --muted-strong: #b4bfd1;
+  --border: #283247;
+  --border-strong: #35415a;
+  --accent: #8b98ff;
+  --accent-dark: #a4adff;
+  --accent-soft: #252b4c;
+  --green: #55d4ad;
+  --shadow: 0 12px 36px rgba(0, 0, 0, .15);
   --radius: 18px;
 }
+
 html[data-theme="dark"] {
   color-scheme: dark;
   --bg: #0d111b;
@@ -61,9 +63,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
 .icon-button { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 12px; color: var(--text); background: var(--surface); transition: border-color .2s, transform .2s; }
 .icon-button:hover { border-color: var(--accent); transform: translateY(-1px); }
 .icon-button svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.moon-icon { display: none; }
-html[data-theme="dark"] .sun-icon { display: none; }
-html[data-theme="dark"] .moon-icon { display: block; }
+
 .hero { max-width: 760px; margin: 57px auto 38px; text-align: center; }
 .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: 1.65px; }
 .eyebrow-line { width: 19px; height: 2px; background: var(--accent); border-radius: 2px; }
