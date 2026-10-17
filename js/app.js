@@ -133,12 +133,7 @@
     showToast("Teks berhasil dihapus.");
   });
 
-  $("sampleButton").addEventListener("click", () => {
-    textInput.value = sampleText;
-    analyze();
-    textInput.focus();
-    showToast("Contoh teks berhasil dimuat.");
-  });
+ 
 
   themeToggle.addEventListener("click", () => {
     const current = document.documentElement.dataset.theme || "light";
