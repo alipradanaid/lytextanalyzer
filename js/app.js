@@ -8,12 +8,7 @@
   const toast = $("toast");
   let toastTimer;
 
-  const sampleText = `Setiap pemikiran lahir dari perjumpaan manusia dengan dunia, pengalaman, dan pertanyaan-pertanyaan yang belum menemukan jawaban. Namun, memahami sesuatu tidak selalu berarti menemukan kepastian. Terkadang, kebijaksanaan justru tumbuh ketika seseorang bersedia tinggal lebih lama bersama pertanyaan.
-
-Menulis bukan sekadar merangkai kata menjadi kalimat, melainkan upaya menata pikiran agar sesuatu yang semula samar perlahan memperoleh makna. Melalui tulisan, manusia dapat meninjau kembali keyakinannya, mempertanyakan anggapannya sendiri, dan menemukan sudut pandang yang sebelumnya luput dari perhatian.
-
-Pada akhirnya, nilai sebuah tulisan tidak hanya terletak pada keindahan bahasanya, tetapi juga pada kedalaman pemikiran yang dikandungnya. Sebab, menulis adalah salah satu cara manusia memahami dunia sekaligus mengenali batas-batas pemahamannya sendiri.`;
-
+ 
   const numberFormat = new Intl.NumberFormat("id-ID", { maximumFractionDigits: 2 });
 
   function countWords(text) {
